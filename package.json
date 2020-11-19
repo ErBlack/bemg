@@ -1,0 +1,27 @@
+{
+  "name": "bemg",
+  "version": "1.0.0",
+  "description": "bem generator",
+  "main": "index.js",
+    "bin": {
+    "ertools": "./bin/bemg.js"
+  },
+  "scripts": {
+    "docs": "node docs.js > README.md",
+    "version": "npm run docs && git add README.md",
+    "postversion": "git push && git push --tags"
+  },
+  "keywords": [
+    "bem"
+  ],
+  "author": "ertema",
+  "license": "ISC",
+  "dependencies": {
+    "bem-naming": "^1.0.1",
+    "commander": "^6.2.0",
+    "glob": "^7.1.6",
+    "lodash.camelcase": "^4.3.0",
+    "lodash.template": "^4.5.0",
+    "username": "^5.1.0"
+  }
+}
