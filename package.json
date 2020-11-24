@@ -4,7 +4,7 @@
   "description": "bem generator",
   "main": "index.js",
     "bin": {
-    "ertools": "./bin/bemg.js"
+    "bemg": "./bin/bemg.js"
   },
   "scripts": {
     "docs": "node docs.js > README.md",
