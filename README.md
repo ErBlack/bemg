@@ -1,9 +1,9 @@
  
 ### bemg 
 
-```Usage: bemg [options] <path>
+```Usage: bemg [options]
 
-Создаёт файлы
+Создаёт файлы относительно текущей папки
 
 Options:
   -V, --version          output the version number
