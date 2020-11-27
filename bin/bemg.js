@@ -14,8 +14,8 @@ function list(val) {
 
 commander
     .version(require('../package').version)
-    .usage('[options] <path>')
-    .description('Создаёт файлы')
+    .usage('[options]')
+    .description('Создаёт файлы относительно текущей папки')
     .option('-t, --types [types]', 'Список типов файлов через запятую', list)
     .option('-i, --items [items]', 'Список сущностей через запятую', list)
     .option('-d --dry-run [dryRun]', 'Не создавать файлы и папки', Boolean)
@@ -24,8 +24,6 @@ commander
 const types = Array.isArray(commander.types) ? commander.types : [];
 const items = Array.isArray(commander.items) ? commander.items : [''];
 
-if (commander.args[0]) {
-    const task = new Task(commander.args[0]);
+const task = new Task(process.cwd());
 
-    task.write(types, items, commander.dryRun);
-}
+task.write(types, items, commander.dryRun);
