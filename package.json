@@ -1,6 +1,6 @@
 {
   "name": "bemg",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "bem generator",
   "main": "index.js",
   "bin": {
