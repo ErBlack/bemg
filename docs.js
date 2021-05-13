@@ -1,10 +1,20 @@
 'use strict';
 
 const exec = require('child_process').execSync;
-const fs = require('fs');
-const COMMAND = /^\s{4}(\w[-\w]*)/;
+const COMMAND = /^\s{2}(\w[-\w]*)/;
 
-const DOC = '';
+const DOC = `## Усиановка
+
+\`\`\`bash
+npm install -g --registry https://npm.yandex-team.ru bemg
+\`\`\`
+
+## Настройка
+
+В \`bemg/templates\` лежат шаблоны для создания файлов
+В \`bemg/aliases.json\` лежат шорткаты для сокращенного наименования шаблонов файлов
+
+## Использование`;
 
 /**
  * Генерирует документацию команды
@@ -13,12 +23,12 @@ const DOC = '';
  */
 function buildCommandDoc(command) {
     const commandHelp = help(command);
-    const subcommands = commands(command, commandHelp);
+    const subcommands = commands(commandHelp);
 
     return `
 ### bemg ${command}
 
-\`\`\`${commandHelp.replace('Usage: bemg-', 'Usage: bemg ')}\`\`\`
+\`\`\`${commandHelp.replace('Usage: ', 'Usage: bemg ')}\`\`\`
 ${subcommands.map(buildCommandDoc).join('')}`
 }
 
@@ -33,25 +43,20 @@ function help(command) {
 
 /**
  * Находит вложенные команды
- * @param {String} command
  * @param {String} str
  * @returns {Array}
  */
-function commands(command, str) {
-    if (command) {
-        command += ' ';
-    }
+function commands(str) {
+    return str.split('Commands:\n').pop().split('\n').reduce(function(result, str) {
+        const [, subcommand] = COMMAND.exec(str) || [];
 
-    return str.split('\n').reduce(function(result, str) {
-        let substr = COMMAND.exec(str);
-
-        if (substr && substr[1] !== 'help') {
-            result.push(`${command} ${substr[1]}`);
+        if (subcommand) {
+            result.push(`${subcommand}`);
         }
 
         return result;
     }, []);
 }
 
-process.stdout.write(`${DOC} ${buildCommandDoc('')}`);
+process.stdout.write(`${DOC}${buildCommandDoc('')}`);
 process.exit(0);
