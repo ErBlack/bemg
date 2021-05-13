@@ -3,7 +3,7 @@
 const exec = require('child_process').execSync;
 const COMMAND = /^\s{2}(\w[-\w]*)/;
 
-const DOC = `## Усиановка
+const DOC = `## Установка
 
 \`\`\`bash
 npm install -g --registry https://npm.yandex-team.ru bemg
@@ -11,8 +11,8 @@ npm install -g --registry https://npm.yandex-team.ru bemg
 
 ## Настройка
 
-В \`bemg/templates\` лежат шаблоны для создания файлов
-В \`bemg/aliases.json\` лежат шорткаты для сокращенного наименования шаблонов файлов
+* В \`bemg/templates\` лежат шаблоны для создания файлов
+* В \`bemg/aliases.json\` лежат шорткаты для сокращенного наименования шаблонов файлов
 
 ## Использование`;
 

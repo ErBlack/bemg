@@ -1,4 +1,4 @@
-## Усиановка
+## Установка
 
 ```bash
 npm install -g --registry https://npm.yandex-team.ru bemg
@@ -6,8 +6,8 @@ npm install -g --registry https://npm.yandex-team.ru bemg
 
 ## Настройка
 
-В `bemg/templates` лежат шаблоны для создания файлов
-В `bemg/aliases.json` лежат шорткаты для сокращенного наименования шаблонов файлов
+* В `bemg/templates` лежат шаблоны для создания файлов
+* В `bemg/aliases.json` лежат шорткаты для сокращенного наименования шаблонов файлов
 
 ## Использование
 ### bemg 
@@ -30,6 +30,8 @@ Commands:
 ### bemg init
 
 ```Usage: bemg init [options]
+
+Создаёт папку с настройками bemg в текущей директории
 
 Options:
   -o, --override [override]  Перезаписать файлы и папки дефолтных настроек

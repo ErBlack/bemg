@@ -7,6 +7,7 @@ const { join, resolve } = require("path");
 const program = new Command();
 
 program
+    .description("Создаёт папку с настройками bemg в текущей директории")
     .option(
         "-o, --override [override]",
         "Перезаписать файлы и папки дефолтных настроек",
