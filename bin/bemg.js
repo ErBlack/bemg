@@ -21,11 +21,13 @@ program
     .option("-t, --types [types]", "Список типов файлов через запятую", list)
     .option("-i, --items [items]", "Список сущностей через запятую", list)
     .option("-d, --dry-run [dryRun]", "Не создавать файлы и папки", Boolean)
+    .option("-n, --naming [naming]", "Выбор нейминга БЭМ", String)
     .action((options) => {
         const types = Array.isArray(options.types) ? options.types : [];
         const items = Array.isArray(options.items) ? options.items : [""];
+        const naming = typeof options.naming === 'string' ? options.naming : 'origin';
 
-        const task = new TaskGenerate(process.cwd());
+        const task = new TaskGenerate(process.cwd(), naming);
         task.write(types, items, options.dryRun);
     })
     .command("init [override] [dryRun]", "Инициализирует все дефолтные настройки", { executableFile: 'init' })
