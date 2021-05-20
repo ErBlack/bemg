@@ -20,6 +20,7 @@ Options:
   -V, --version             output the version number
   -t, --types [types]       Список типов файлов через запятую
   -i, --items [items]       Список сущностей через запятую
+  -n, --naming [naming]     Выбор нейминга БЭМ
   -d, --dry-run [dryRun]    Не создавать файлы и папки
   -h, --help                display help for command
 
