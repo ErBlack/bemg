@@ -19,7 +19,7 @@
   "author": "ertema",
   "license": "ISC",
   "dependencies": {
-    "@bem/sdk.naming.entity": "^0.2.11",
+    "bem-naming": "^1.0.1",
     "commander": "^6.2.0",
     "glob": "^7.1.6",
     "lodash.camelcase": "^4.3.0",

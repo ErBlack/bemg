@@ -7,7 +7,26 @@ npm install -g --registry https://npm.yandex-team.ru bemg
 ## Настройка
 
 * В `bemg/templates` лежат шаблоны для создания файлов
-* В `bemg/aliases.json` лежат шорткаты для сокращенного наименования шаблонов файлов
+* В `bemg/bemg.config.js` лежит конфиг для bemg
+
+### Формат конфига
+
+```ts
+type Config = {
+  aliases: Record<string, string>, // шорткаты для сокращенного наименования типов файлов
+  naming: { // настройка нейминга BEM
+    elem: "__", // разделитель элемента
+    mod: { name: "_", val: "_" }, // разделители модов
+    wordPattern?: RegExp | string, // регекс допустимого имени (например, при использовании - в качестве разделителя нельзя использовать этот символ в имени)
+
+    // опциональный метод для кастомной генерации имени файла (возврат falsy значения будет использовать поведение по умолчанию)
+    generateFileName?: (bemString: string, fileType: string, bemEntity: Object) => string | false,
+    // опциональный метод для кастомной генерации имени папки (возврат falsy значения будет использовать поведение по умолчанию)
+    generateFolderName?: (entity: Object, entityType: string) => string | false
+  }
+};
+
+```
 
 ## Использование
 ### bemg 
@@ -20,7 +39,6 @@ Options:
   -V, --version             output the version number
   -t, --types [types]       Список типов файлов через запятую
   -i, --items [items]       Список сущностей через запятую
-  -n, --naming [naming]     Выбор нейминга БЭМ
   -d, --dry-run [dryRun]    Не создавать файлы и папки
   -h, --help                display help for command
 
