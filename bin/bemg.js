@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const commander = require("commander");
-const TaskGenerate = require("../lib/TaskGenerate");
+const generate = require("../lib/generate");
 
 const program = new commander.Command();
 
@@ -25,8 +25,12 @@ program
         const types = Array.isArray(options.types) ? options.types : [];
         const items = Array.isArray(options.items) ? options.items : [""];
 
-        const task = new TaskGenerate(process.cwd());
-        task.write(types, items, options.dryRun);
+        generate({
+            targetPath: process.cwd(),
+            types,
+            items,
+            dryRun: options.dryRun
+        });
     })
     .command("init [override] [dryRun]", "Инициализирует все дефолтные настройки", { executableFile: 'init' })
 

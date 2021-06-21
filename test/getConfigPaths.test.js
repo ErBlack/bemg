@@ -1,27 +1,38 @@
 const { resolve } = require('path');
-const { getConfigPath, getTemplatesDirPath } =  require('../lib/getConfigPaths');
+const getConfigPaths =  require('../lib/getConfigPaths');
 
-const withBemg = `${__dirname}/with`;
-const withoutBemg = `${__dirname}/without`;
+jest.mock('fs');
 
 describe('getConfigPaths', () => {
-    describe('getConfigPath', () => {
-        test('Конфиг в папке с bemg', () => {
-            expect(getConfigPath(withBemg)).toStrictEqual(`${withBemg}/bemg/bemg.config.js`);
-        });
-        
-        test('Конфиг в папке пустым bemg', () => {
-            expect(getConfigPath(withoutBemg)).toStrictEqual(resolve('bemg/bemg.config.js'));
+    beforeEach(() => {
+        require('fs').__setMockFiles({
+            with: {
+                bemg: {
+                    'config.js': '',
+                    templates: {
+                        'template_block.tsx': ''
+                    }
+                },
+            },
+            without: {
+                bemg: {}
+            }
         });
     });
+
+    test('Путь к конфигу в папке с bemg', () => {
+        expect(getConfigPaths('/with').configPath).toStrictEqual('/with/bemg/config.json');
+    });
     
-    describe('getTemplatesDirPath', () => {
-        test('Конфиг в папке с bemg', () => {
-            expect(getTemplatesDirPath(withBemg)).toStrictEqual(`${withBemg}/bemg/templates`);
-        });
-        
-        test('Конфиг в папке пустым bemg', () => {
-            expect(getTemplatesDirPath(withoutBemg)).toStrictEqual(resolve('bemg/templates'));
-        });
+    test('Путь к конфигу в папке c пустым bemg', () => {
+        expect(getConfigPaths('/without').configPath).toStrictEqual(resolve('bemg/config.json'));
+    });
+
+    test('Путь к шаблонам в папке с bemg', () => {
+        expect(getConfigPaths('/with').templatesPath).toStrictEqual('/with/bemg/templates');
+    });
+    
+    test('Путь к шаблонам в папке пустым bemg', () => {
+        expect(getConfigPaths('/without').templatesPath).toStrictEqual(resolve('bemg/templates'));
     });
 });
