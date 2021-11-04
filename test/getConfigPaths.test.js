@@ -8,7 +8,7 @@ describe('getConfigPaths', () => {
         require('fs').__setMockFiles({
             with: {
                 bemg: {
-                    'config.js': '',
+                    'config.json': '',
                     templates: {
                         'template_block.tsx': ''
                     }
