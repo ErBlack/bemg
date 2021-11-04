@@ -1,21 +1,38 @@
 const { resolve } = require('path');
 const getConfigPaths =  require('../lib/getConfigPaths');
 
-const withBemg = `${__dirname}/with`;
-const withoutBemg = `${__dirname}/without`;
+jest.mock('fs');
 
 describe('getConfigPaths', () => {
-    test('Конфиг в папке с bemg', () => {
-        expect(getConfigPaths(withBemg)).toStrictEqual({
-            aliases: `${withBemg}/bemg/aliases.json`,
-            templates: `${withBemg}/bemg/templates`
+    beforeEach(() => {
+        require('fs').__setMockFiles({
+            with: {
+                bemg: {
+                    'config.js': '',
+                    templates: {
+                        'template_block.tsx': ''
+                    }
+                },
+            },
+            without: {
+                bemg: {}
+            }
         });
     });
+
+    test('Путь к конфигу в папке с bemg', () => {
+        expect(getConfigPaths('/with').configPath).toStrictEqual('/with/bemg/config.json');
+    });
     
-    test('Конфиг в папке пустым bemg', () => {
-        expect(getConfigPaths(withoutBemg)).toStrictEqual({
-            aliases: resolve('bemg/aliases.json'),
-            templates: resolve('bemg/templates')
-        });
+    test('Путь к конфигу в папке c пустым bemg', () => {
+        expect(getConfigPaths('/without').configPath).toStrictEqual(resolve('bemg/config.json'));
+    });
+
+    test('Путь к шаблонам в папке с bemg', () => {
+        expect(getConfigPaths('/with').templatesPath).toStrictEqual('/with/bemg/templates');
+    });
+    
+    test('Путь к шаблонам в папке пустым bemg', () => {
+        expect(getConfigPaths('/without').templatesPath).toStrictEqual(resolve('bemg/templates'));
     });
 });

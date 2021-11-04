@@ -21,7 +21,6 @@
   "dependencies": {
     "bem-naming": "^1.0.1",
     "commander": "^6.2.0",
-    "glob": "^7.1.6",
     "lodash.camelcase": "^4.3.0",
     "lodash.template": "^4.5.0",
     "username": "^5.1.0"

@@ -12,7 +12,13 @@ npm install -g --registry https://npm.yandex-team.ru bemg
 ## Настройка
 
 * В \`bemg/templates\` лежат шаблоны для создания файлов
-* В \`bemg/aliases.json\` лежат шорткаты для сокращенного наименования шаблонов файлов
+* В \`bemg/config.json\` лежат настройки пакета
+
+### config.aliases
+Список сокращений для типов файлов
+
+### config.naming
+Настройки нейминга для пакета bem-naming
 
 ## Использование`;
 
