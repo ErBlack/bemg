@@ -1,7 +1,7 @@
 ## Установка
 
 ```bash
-npm install -g bemg
+npm install -g --registry https://npm.yandex-team.ru bemg
 ```
 
 ## Настройка
