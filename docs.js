@@ -6,7 +6,7 @@ const COMMAND = /^\s{2}(\w[-\w]*)/;
 const DOC = `## Установка
 
 \`\`\`bash
-npm install -g --registry https://npm.yandex-team.ru bemg
+npm install bemg
 \`\`\`
 
 ## Настройка
