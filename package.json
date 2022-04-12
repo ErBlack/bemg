@@ -17,6 +17,11 @@
     "version": "npm run docs && git add README.md",
     "postversion": "git push && git push --tags"
   },
+  "files": [
+    "bemg",
+    "bin",
+    "lib"
+  ],
   "keywords": [
     "bem"
   ],
