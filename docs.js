@@ -64,5 +64,8 @@ function commands(str) {
     }, []);
 }
 
-process.stdout.write(`${DOC}${buildCommandDoc('')}`);
+process.stdout.write(`${DOC}${buildCommandDoc('')}
+## License 
+
+© 2022 YANDEX LLC. The code is released under the [Mozilla Public License 2.0](LICENSE.txt).`);
 process.exit(0);

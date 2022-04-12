@@ -20,8 +20,8 @@
   "keywords": [
     "bem"
   ],
-  "author": "ertema",
-  "license": "ISC",
+  "author": "ErBlack",
+  "license": "MPL-2.0",
   "dependencies": {
     "bem-naming": "^1.0.1",
     "commander": "^8.3.0",

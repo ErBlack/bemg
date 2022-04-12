@@ -44,3 +44,7 @@ Options:
   -d, --dry-run [dryRun]     Не создавать файлы и папки
   -h, --help                 display help for command
 ```
+
+## License 
+
+© 2022 YANDEX LLC. The code is released under the [Mozilla Public License 2.0](LICENSE.txt).
