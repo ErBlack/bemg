@@ -31,6 +31,7 @@ Options:
 
 Commands:
   init [override] [dryRun]  Инициализирует все дефолтные настройки
+  print-templates           Инициализирует все дефолтные настройки
 ```
 
 ### bemg init
@@ -43,6 +44,16 @@ Options:
   -o, --override [override]  Перезаписать файлы и папки дефолтных настроек
   -d, --dry-run [dryRun]     Не создавать файлы и папки
   -h, --help                 display help for command
+```
+
+### bemg print-templates
+
+```Usage: bemg print-templates [options]
+
+Выводит список шаблонов
+
+Options:
+  -h, --help  display help for command
 ```
 
 ## License 
