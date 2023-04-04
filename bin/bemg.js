@@ -33,5 +33,6 @@ program
         });
     })
     .command("init [override] [dryRun]", "Инициализирует все дефолтные настройки", { executableFile: 'init' })
+    .command("print-templates", "Инициализирует все дефолтные настройки", { executableFile: 'print-templates' })
 
 program.parse(process.argv);
