@@ -4,10 +4,10 @@ const config = require('../bemg/config.json');
 const bemg = {
     'config.json': JSON.stringify(config),
     templates: {
-        'template_block.tsx': '${block} ${Block}',
-        'template_elem.tsx': '${block} ${Block} ${elem} ${Elem}',
-        'template_blockMod.tsx': '${block} ${Block} ${modName} ${ModName} ${modVal} ${ModVal}',
-        'template_elemMod.tsx': '${block} ${Block} ${elem} ${Elem} ${modName} ${ModName} ${modVal} ${ModVal}'
+        'template_block.tsx': '${block} ${Block} ${entity}',
+        'template_elem.tsx': '${block} ${Block} ${elem} ${Elem} ${entity}',
+        'template_blockMod.tsx': '${block} ${Block} ${modName} ${ModName} ${modVal} ${ModVal} ${entity}',
+        'template_elemMod.tsx': '${block} ${Block} ${elem} ${Elem} ${modName} ${ModName} ${modVal} ${ModVal} ${entity}'
     }
 }
 
@@ -27,7 +27,7 @@ describe('generate', () => {
             types: ['tsx']
         });
 
-        expect(require('fs').__getMockFiles()['/block/block.tsx']).toEqual('block Block');
+        expect(require('fs').__getMockFiles()['/block/block.tsx']).toEqual('block Block block');
     });
 
     test('Создаёт файл для элемента в папке блока', () => {
@@ -44,7 +44,7 @@ describe('generate', () => {
             items: ['__elem']
         });
 
-        expect(require('fs').__getMockFiles()['/block/__elem/block__elem.tsx']).toEqual('block Block elem Elem');
+        expect(require('fs').__getMockFiles()['/block/__elem/block__elem.tsx']).toEqual('block Block elem Elem block__elem');
     });
 
     test('Создаёт файл для модификатора блока в папке блока', () => {
@@ -61,7 +61,7 @@ describe('generate', () => {
             items: ['_mod_val']
         });
 
-        expect(require('fs').__getMockFiles()['/block/_mod/block_mod_val.tsx']).toEqual('block Block mod Mod val Val');
+        expect(require('fs').__getMockFiles()['/block/_mod/block_mod_val.tsx']).toEqual('block Block mod Mod val Val block_mod_val');
     });
 
     test('Создаёт файл для модификатора элемента в папке блока', () => {
@@ -78,7 +78,7 @@ describe('generate', () => {
             items: ['__elem_mod_val']
         });
 
-        expect(require('fs').__getMockFiles()['/block/__elem/_mod/block__elem_mod_val.tsx']).toEqual('block Block elem Elem mod Mod val Val');
+        expect(require('fs').__getMockFiles()['/block/__elem/_mod/block__elem_mod_val.tsx']).toEqual('block Block elem Elem mod Mod val Val block__elem_mod_val');
     });
 
     test('Создаёт файл для элемента в папке элемента', () => {
@@ -96,7 +96,7 @@ describe('generate', () => {
             types: ['tsx']
         });
 
-        expect(require('fs').__getMockFiles()['/block/__elem/block__elem.tsx']).toEqual('block Block elem Elem');
+        expect(require('fs').__getMockFiles()['/block/__elem/block__elem.tsx']).toEqual('block Block elem Elem block__elem');
     });
 
     test('Создаёт файл для модификатора блока в папке модификатора', () => {
@@ -115,7 +115,7 @@ describe('generate', () => {
             items: ['_val']
         });
 
-        expect(require('fs').__getMockFiles()['/block/_mod/block_mod_val.tsx']).toEqual('block Block mod Mod val Val');
+        expect(require('fs').__getMockFiles()['/block/_mod/block_mod_val.tsx']).toEqual('block Block mod Mod val Val block_mod_val');
     });
 
     test('Создаёт файл для модификатора элемента в папке элемента', () => {
@@ -134,7 +134,7 @@ describe('generate', () => {
             items: ['_mod_val']
         });
 
-        expect(require('fs').__getMockFiles()['/block/__elem/_mod/block__elem_mod_val.tsx']).toEqual('block Block elem Elem mod Mod val Val');
+        expect(require('fs').__getMockFiles()['/block/__elem/_mod/block__elem_mod_val.tsx']).toEqual('block Block elem Elem mod Mod val Val block__elem_mod_val');
     });
 
     test('Создаёт файл для модификатора элемента в папке модификатора элемента', () => {
@@ -155,7 +155,28 @@ describe('generate', () => {
             items: ['_val']
         });
 
-        expect(require('fs').__getMockFiles()['/block/__elem/_mod/block__elem_mod_val.tsx']).toEqual('block Block elem Elem mod Mod val Val');
+        expect(require('fs').__getMockFiles()['/block/__elem/_mod/block__elem_mod_val.tsx']).toEqual('block Block elem Elem mod Mod val Val block__elem_mod_val');
+    });
+
+        test('Правильно создаёт boolean модификатор', () => {
+        fs = require('fs');
+
+        fs.__setMockFiles({
+            bemg,
+            block: {
+                __elem: {
+                    _mod: {}
+                }
+            }
+        });
+
+        generate({
+            targetPath: '/block/__elem',
+            types: ['tsx'],
+            items: ['_mod']
+        });
+
+        expect(require('fs').__getMockFiles()['/block/__elem/_mod/block__elem_mod.tsx']).toEqual('block Block elem Elem mod Mod true true block__elem_mod');
     });
 
     test('Не перетирает файл блока', () => {
@@ -221,6 +242,6 @@ describe('generate', () => {
             items: [':val']
         });
 
-        expect(require('fs').__getMockFiles()['/block/::elem/:mod/block::elem:mod:val.tsx']).toEqual('block Block elem Elem mod Mod val Val');
+        expect(require('fs').__getMockFiles()['/block/::elem/:mod/block::elem:mod:val.tsx']).toEqual('block Block elem Elem mod Mod val Val block::elem:mod:val');
     });
 });
