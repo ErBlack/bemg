@@ -1,0 +1,6 @@
+.github
+bemg/templates
+node_modules
+package.json
+package-lock.json
+README.md

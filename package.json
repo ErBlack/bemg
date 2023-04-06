@@ -17,6 +17,8 @@
   "scripts": {
     "docs": "node docs.js > README.md",
     "test": "npx jest",
+    "fix": "npx prettier --write .",
+    "typecheck": "npx tsc --noEmit",
     "preversion": "npm run test",
     "version": "npm run docs && git add README.md",
     "postversion": "git push && git push --tags"
@@ -32,6 +34,7 @@
   "author": "ErBlack",
   "license": "MPL-2.0",
   "dependencies": {
+    "@types/jest": "^29.5.0",
     "bem-naming": "^1.0.1",
     "commander": "^10.0.0",
     "lodash.camelcase": "^4.3.0",
@@ -39,6 +42,8 @@
     "username": "^5.1.0"
   },
   "devDependencies": {
-    "jest": "^29.5.0"
+    "jest": "^29.5.0",
+    "prettier": "^2.8.7",
+    "typescript": "^5.0.3"
   }
 }

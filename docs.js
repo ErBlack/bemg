@@ -35,7 +35,7 @@ function buildCommandDoc(command) {
 ### bemg ${command}
 
 \`\`\`${commandHelp.replace('Usage: ', 'Usage: bemg ')}\`\`\`
-${subcommands.map(buildCommandDoc).join('')}`
+${subcommands.map(buildCommandDoc).join('')}`;
 }
 
 /**
@@ -44,7 +44,7 @@ ${subcommands.map(buildCommandDoc).join('')}`
  * @returns {String}
  */
 function help(command) {
-    return String(exec(`node ./bin/bemg.js ${command} --help`))
+    return String(exec(`node ./bin/bemg.js ${command} --help`));
 }
 
 /**
@@ -53,15 +53,19 @@ function help(command) {
  * @returns {Array}
  */
 function commands(str) {
-    return str.split('Commands:\n').pop().split('\n').reduce(function(result, str) {
-        const [, subcommand] = COMMAND.exec(str) || [];
+    return str
+        .split('Commands:\n')
+        .pop()
+        .split('\n')
+        .reduce(function (result, str) {
+            const [, subcommand] = COMMAND.exec(str) || [];
 
-        if (subcommand) {
-            result.push(`${subcommand}`);
-        }
+            if (subcommand) {
+                result.push(`${subcommand}`);
+            }
 
-        return result;
-    }, []);
+            return result;
+        }, []);
 }
 
 process.stdout.write(`${DOC}${buildCommandDoc('')}
