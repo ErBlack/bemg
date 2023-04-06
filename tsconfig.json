@@ -3,7 +3,6 @@
         "target": "ESNext",
         "module": "commonjs",
         "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
         "strict": true,
         "allowJs": true,
         "checkJs": true,
