@@ -1,48 +1,48 @@
-## Установка
+## Installation
 
 ```bash
 npm install bemg
 ```
 
-## Настройка
+## Configuration
 
-* В `bemg/templates` лежат шаблоны для создания файлов
-* В `bemg/config.json` лежат настройки пакета
+* Templates for creating files are located in `bemg/templates`
+* Package settings are located in `bemg/config.json`
 
 ### config.aliases
-Список сокращений для типов файлов
+List of abbreviations for file types
 
 ### config.naming
-Настройки нейминга для пакета bem-naming
+Naming settings for the bem-naming package
 
-## Использование
+## Usage
 ### bemg 
 
 ```Usage: bemg bemg [options]
 
-Создаёт файлы относительно текущей папки
+Creates files relative to the current folder
 
 Options:
   -V, --version             output the version number
-  -t, --types [types]       Список типов файлов через запятую
-  -i, --items [items]       Список сущностей через запятую
-  -d, --dry-run [dryRun]    Не создавать файлы и папки
+  -t, --types [types]       List of file types separated by comma
+  -i, --items [items]       List of entities separated by comma
+  -d, --dry-run [dryRun]    Do not create files and folders
   -h, --help                display help for command
 
 Commands:
-  init [override] [dryRun]  Инициализирует все дефолтные настройки
-  print-templates           Инициализирует все дефолтные настройки
+  init [override] [dryRun]  Initializes all default settings
+  print-templates           Prints the list of templates
 ```
 
 ### bemg init
 
 ```Usage: bemg init [options]
 
-Создаёт папку с настройками bemg в текущей директории
+Creates a folder with bemg settings in the current directory
 
 Options:
-  -o, --override [override]  Перезаписать файлы и папки дефолтных настроек
-  -d, --dry-run [dryRun]     Не создавать файлы и папки
+  -o, --override [override]  Overwrite files and folders of default settings
+  -d, --dry-run [dryRun]     Do not create files and folders
   -h, --help                 display help for command
 ```
 
@@ -50,7 +50,7 @@ Options:
 
 ```Usage: bemg print-templates [options]
 
-Выводит список шаблонов
+Outputs the list of templates
 
 Options:
   -h, --help  display help for command

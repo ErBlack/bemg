@@ -1,5 +1,4 @@
-const { basename, dirname } = require('path');
-const fs = jest.createMockFromModule('fs');
+import { basename, dirname } from 'node:path';
 
 let folders = Object.create(null);
 let files = Object.create(null);
@@ -10,9 +9,9 @@ function mapTree(path, tree) {
     folders[path] = items.map((subpath) => subpath);
 
     items.forEach((subpath) => {
-        const childPath = path + '/' + subpath;
+        const childPath = `${path}/${subpath}`;
 
-        if (typeof tree[subpath] === 'object') {
+        if (typeof tree[subpath] === 'object' && tree[subpath] !== null) {
             mapTree(childPath, tree[subpath]);
         } else {
             files[childPath] = tree[subpath];
@@ -20,48 +19,67 @@ function mapTree(path, tree) {
     });
 }
 
-fs.__setMockFiles = (tree) => {
+function resetMockState() {
     folders = Object.create(null);
     files = Object.create(null);
+}
 
+export function __setMockFiles(tree) {
+    resetMockState();
     mapTree('', tree);
-};
+}
 
-fs.__getMockFiles = () => files;
+export function __getMockFiles() {
+    return files;
+}
 
-fs.__getMockFolders = () => folders;
+export function __getMockFolders() {
+    return folders;
+}
 
-fs.readdirSync = function readdirSync(directoryPath) {
+export function readdirSync(directoryPath) {
     return folders[directoryPath] || [];
-};
+}
 
-fs.existsSync = function existsSync(path) {
+export function existsSync(path) {
     return folders[path] !== undefined || files[path] !== undefined;
-};
+}
 
-fs.lstatSync = function lstatSync(path) {
+export function lstatSync(path) {
     return {
         isDirectory: () => folders[path] !== undefined,
         isFile: () => files[path] !== undefined,
     };
-};
+}
 
-fs.readFileSync = function readFileSync(path) {
+export function readFileSync(path) {
     return files[path];
-};
+}
 
-fs.mkdirSync = function mkdirSync(path) {
-    folders[path] = [];
-};
+export function mkdirSync(path) {
+    if (!folders[path]) {
+        folders[path] = [];
+    }
 
-fs.writeFileSync = function (path, content) {
+    const parent = dirname(path);
     const name = basename(path);
 
+    if (parent && folders[parent] && !folders[parent].includes(name)) {
+        folders[parent].push(name);
+    }
+}
+
+export function writeFileSync(path, content) {
     files[path] = content;
 
-    if (folders[dirname(path)].indexOf(name) === -1) {
-        folders[dirname(path)].push(name);
-    }
-};
+    const parent = dirname(path);
+    const name = basename(path);
 
-module.exports = fs;
+    if (!folders[parent]) {
+        folders[parent] = [];
+    }
+
+    if (!folders[parent].includes(name)) {
+        folders[parent].push(name);
+    }
+}

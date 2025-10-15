@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
-const { resolve } = require('path');
-const { Command } = require('commander');
-const getConfigPaths = require('../lib/getConfigPaths');
-const getTemplatesPaths = require('../lib/templates/getTemplatesPaths');
-const { readFileSync } = require('fs');
+import { resolve } from 'node:path';
+import { Command } from 'commander';
+import { readFileSync } from 'node:fs';
+import { getConfigPaths } from '../lib/getConfigPaths.js';
+import { getTemplatesPaths } from '../lib/templates/getTemplatesPaths.js';
 
 const program = new Command();
 
-program.description('Выводит список шаблонов').action(() => {
+program.description('Outputs the list of templates').action(() => {
     const { templatesPath, configPath } = getConfigPaths(resolve(process.cwd()));
     const templates = getTemplatesPaths(templatesPath);
     const config = JSON.parse(readFileSync(configPath, { encoding: 'utf8' }));

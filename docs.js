@@ -1,29 +1,28 @@
-'use strict';
+import { execSync } from 'node:child_process';
 
-const exec = require('child_process').execSync;
 const COMMAND = /^\s{2}(\w[-\w]*)/;
 
-const DOC = `## Установка
+const DOC = `## Installation
 
 \`\`\`bash
 npm install bemg
 \`\`\`
 
-## Настройка
+## Configuration
 
-* В \`bemg/templates\` лежат шаблоны для создания файлов
-* В \`bemg/config.json\` лежат настройки пакета
+* Templates for creating files are located in \`bemg/templates\`
+* Package settings are located in \`bemg/config.json\`
 
 ### config.aliases
-Список сокращений для типов файлов
+List of abbreviations for file types
 
 ### config.naming
-Настройки нейминга для пакета bem-naming
+Naming settings for the bem-naming package
 
-## Использование`;
+## Usage`;
 
 /**
- * Генерирует документацию команды
+ * Generates command documentation
  * @param {String} command
  * @returns {String}
  */
@@ -39,16 +38,16 @@ ${subcommands.map(buildCommandDoc).join('')}`;
 }
 
 /**
- * Получает help команды
+ * Gets command help
  * @param {String} command
  * @returns {String}
  */
 function help(command) {
-    return String(exec(`node ./bin/bemg.js ${command} --help`));
+    return String(execSync(`node ./bin/bemg.js ${command} --help`));
 }
 
 /**
- * Находит вложенные команды
+ * Finds nested commands
  * @param {String} str
  * @returns {Array}
  */

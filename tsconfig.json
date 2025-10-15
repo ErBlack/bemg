@@ -1,14 +1,15 @@
 {
     "compilerOptions": {
         "target": "ESNext",
-        "module": "commonjs",
+        "module": "ESNext",
         "esModuleInterop": true,
         "strict": true,
         "allowJs": true,
         "checkJs": true,
-        "resolveJsonModule": true,
         "noImplicitAny": false,
-        "outDir": "dist"
+        "outDir": "dist",
+        "moduleResolution": "node",
+        "resolveJsonModule": true
     },
     "include": ["bin", "lib", "__mocks__"],
     "exclude": ["**/*.test.js"]
