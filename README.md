@@ -1,7 +1,7 @@
 ## Installation
 
 ```bash
-npm install bemg
+npm install -g bemg
 ```
 
 ## Configuration
@@ -18,9 +18,13 @@ Naming settings for the bem-naming package
 ## Usage
 ### bemg 
 
-```Usage: bemg bemg [options]
+```Usage: bemg bemg [name] [options]
 
-Creates files relative to the current folder
+creates files relative to the current folder, or new folder with given name if
+name passed
+
+Arguments:
+  name                      Create block with given name
 
 Options:
   -V, --version             output the version number

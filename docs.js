@@ -5,7 +5,7 @@ const COMMAND = /^\s{2}(\w[-\w]*)/;
 const DOC = `## Installation
 
 \`\`\`bash
-npm install bemg
+npm install -g bemg
 \`\`\`
 
 ## Configuration
@@ -31,7 +31,7 @@ function buildCommandDoc(command) {
     const subcommands = commands(commandHelp);
 
     return `
-### bemg ${command}
+### ${command === 'bemg' ? command : `bemg ${command}`}
 
 \`\`\`${commandHelp.replace('Usage: ', 'Usage: bemg ')}\`\`\`
 ${subcommands.map(buildCommandDoc).join('')}`;

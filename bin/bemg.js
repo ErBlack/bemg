@@ -17,16 +17,19 @@ function list(val) {
 
 program
     .version(packageJson.version)
-    .usage('[options]')
-    .description('Creates files relative to the current folder')
+    .usage('[name] [options]')
+    .summary('Creates block files')
+    .description('creates files relative to the current folder, or new folder with given name if name passed')
     .option('-t, --types [types]', 'List of file types separated by comma', list)
     .option('-i, --items [items]', 'List of entities separated by comma', list)
     .option('-d, --dry-run [dryRun]', 'Do not create files and folders', Boolean)
-    .action((options) => {
+    .argument('[name]', 'Create block with given name')
+    .action((name, options) => {
         const types = Array.isArray(options.types) ? options.types : [];
         const items = Array.isArray(options.items) ? options.items : [''];
 
         generate({
+            name,
             targetPath: process.cwd(),
             types,
             items,
