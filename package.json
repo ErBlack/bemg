@@ -37,7 +37,6 @@
   "dependencies": {
     "commander": "^14.0.1",
     "lodash.camelcase": "^4.3.0",
-    "lodash.template": "^4.5.0",
     "username": "^7.0.0"
   },
   "devDependencies": {
