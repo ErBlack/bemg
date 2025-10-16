@@ -35,8 +35,7 @@
   "author": "ErBlack",
   "license": "MPL-2.0",
   "dependencies": {
-    "commander": "^14.0.1",
-    "username": "^7.0.0"
+    "commander": "^14.0.1"
   },
   "devDependencies": {
     "@types/node": "^22.8.6",
