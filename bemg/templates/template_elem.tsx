@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { cn${Block} } from '../${block}.const';
+import { cn${Block} } from '../${block}.constants';
 
 import './${block}__${elem}.css';
 
