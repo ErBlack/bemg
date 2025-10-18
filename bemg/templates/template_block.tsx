@@ -1,7 +1,7 @@
 import { IClassNameProps } from '@bem-react/core';
 import React, { FC } from 'react';
 
-import { cn${Block} } from './${block}.const';
+import { cn${Block} } from './${block}.constants';
 
 import './${block}.css';
 

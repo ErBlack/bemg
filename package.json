@@ -18,7 +18,7 @@
   "scripts": {
     "docs": "node docs.js > README.md",
     "test": "vitest run",
-    "fix": "prettier --write .",
+    "fix": "prettier --log-level warn --write .",
     "typecheck": "tsc --noEmit",
     "preversion": "npm run test",
     "version": "npm run docs && git add README.md",
@@ -35,7 +35,8 @@
   "author": "ErBlack",
   "license": "MPL-2.0",
   "dependencies": {
-    "commander": "^14.0.1"
+    "commander": "^14.0.1",
+    "@modelcontextprotocol/sdk": "^1.20.0"
   },
   "devDependencies": {
     "@types/node": "^22.8.6",

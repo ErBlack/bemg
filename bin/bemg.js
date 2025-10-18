@@ -37,6 +37,7 @@ program
         });
     })
     .command('init [override] [dryRun]', 'Initializes all default settings', { executableFile: 'init' })
-    .command('print-templates', 'Prints the list of templates', { executableFile: 'print-templates' });
+    .command('print-templates', 'Prints the list of templates', { executableFile: 'print-templates' })
+    .command('mcp', 'Start MCP server for AI agents', { executableFile: 'mcp' });
 
 program.parse(process.argv);
