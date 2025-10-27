@@ -66,28 +66,20 @@ Options:
 ```Usage: bemg mcp [options]
 
 Start MCP (Model Context Protocol) server for AI agents. Exposes bemg
-capabilities to AI assistants like Claude Desktop via JSON-RPC 2.0 over stdio.
+capabilities to AI assistants.
 
 Options:
   -h, --help  display help for command
 
 Configuration:
-    Add to Claude Desktop config (~/Library/Application Support/Claude/claude_desktop_config.json):
     {
       "mcpServers": {
         "bemg": {
           "command": "npx",
-          "args": ["bemg", "mcp"],
-          "cwd": "/path/to/your/project"
+          "args": ["bemg@latest", "mcp"]
         }
       }
     }
-
-Features:
-    Tools: generate_bem_files, init_bemg_config, validate_bem_name, get_bem_structure
-    Resources: bemg://config, bemg://templates, bemg://bem-naming-guide
-    Prompts: create-bem-component, bem-best-practices
-
 ```
 
 ## License 
