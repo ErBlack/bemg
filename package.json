@@ -30,7 +30,8 @@
     "lib"
   ],
   "keywords": [
-    "bem"
+    "bem",
+    "mcp"
   ],
   "author": "ErBlack",
   "license": "MPL-2.0",
