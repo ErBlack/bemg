@@ -37,6 +37,13 @@ Commands:
   init [override] [dryRun]  Initializes all default settings
   print-templates           Prints the list of templates
   mcp                       Start MCP server for AI agents
+
+Items:
+    ""            current entity
+    __elem        element of the block
+    _mod          boolean modifier
+    _mod_val      modifier with value
+    namedItem     non-BEM file of the block
 ```
 
 ### bemg init

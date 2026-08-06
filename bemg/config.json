@@ -3,7 +3,7 @@
         "sb": "stories.tsx",
         "const": "constants.ts",
         "i18n": "block.i18n/block.en.json",
-        "hook": "block.i18n/block.hooks/use.ts"
+        "hook": "block.hooks/use-namedItem.ts"
     },
     "naming": {
         "elem": "__",
