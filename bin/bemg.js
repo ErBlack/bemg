@@ -38,6 +38,16 @@ program
     })
     .command('init [override] [dryRun]', 'Initializes all default settings', { executableFile: 'init' })
     .command('print-templates', 'Prints the list of templates', { executableFile: 'print-templates' })
-    .command('mcp', 'Start MCP server for AI agents', { executableFile: 'mcp' });
+    .command('mcp', 'Start MCP server for AI agents', { executableFile: 'mcp' })
+    .addHelpText(
+        'after',
+        `
+Items:
+    ""            current entity
+    __elem        element of the block
+    _mod          boolean modifier
+    _mod_val      modifier with value
+    namedItem     non-BEM file of the block`,
+    );
 
 program.parse(process.argv);
