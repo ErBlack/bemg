@@ -38,6 +38,7 @@ program
     })
     .command('init [override] [dryRun]', 'Initializes all default settings', { executableFile: 'init' })
     .command('print-templates', 'Prints the list of templates', { executableFile: 'print-templates' })
+    .command('analyze', 'Prints the BEM entity of the current folder', { executableFile: 'analyze' })
     .command('mcp', 'Start MCP server for AI agents', { executableFile: 'mcp' })
     .addHelpText(
         'after',
