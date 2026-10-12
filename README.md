@@ -36,6 +36,7 @@ Options:
 Commands:
   init [override] [dryRun]  Initializes all default settings
   print-templates           Prints the list of templates
+  analyze                   Prints the BEM entity of the current folder
   mcp                       Start MCP server for AI agents
 
 Items:
@@ -63,6 +64,16 @@ Options:
 ```Usage: bemg print-templates [options]
 
 Outputs the list of templates
+
+Options:
+  -h, --help  display help for command
+```
+
+### bemg analyze
+
+```Usage: bemg analyze [options]
+
+Outputs the BEM entity of the current folder
 
 Options:
   -h, --help  display help for command
