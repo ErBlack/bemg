@@ -15,6 +15,9 @@ List of abbreviations for file types
 ### config.naming
 Naming settings for the bem-naming package
 
+### config.inherits
+Inherit settings and templates from the nearest bemg folder above
+
 ## Usage
 ### bemg 
 
