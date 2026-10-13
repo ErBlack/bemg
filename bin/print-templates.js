@@ -2,24 +2,22 @@
 
 import { resolve } from 'node:path';
 import { Command } from 'commander';
-import { readFileSync } from 'node:fs';
 import { getConfigPaths } from '../lib/getConfigPaths.js';
-import { getTemplatesPaths } from '../lib/templates/getTemplatesPaths.js';
+import { readConfig } from '../lib/getConfigs.js';
 
 const program = new Command();
 
 program.description('Outputs the list of templates').action(() => {
-    const { templatesPath, configPath } = getConfigPaths(resolve(process.cwd()));
-    const templates = getTemplatesPaths(templatesPath);
-    const config = JSON.parse(readFileSync(configPath, { encoding: 'utf8' }));
+    const { configPaths, templatesPaths } = getConfigPaths(resolve(process.cwd()));
+    const config = readConfig(configPaths);
 
-    const aliases = Object.entries(config.aliases || {}).reduce((acc, [key, value]) => {
+    const aliases = Object.entries(config.aliases).reduce((acc, [key, value]) => {
         acc[value] = key;
 
         return acc;
     }, {});
 
-    const print = JSON.stringify(templates, null, 4)
+    const print = JSON.stringify(templatesPaths, null, 4)
         .replace(/"([^"]+)": {/g, (_, match) => {
             const alias = aliases[match];
 
